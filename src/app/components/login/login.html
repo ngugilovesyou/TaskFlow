@@ -1,0 +1,92 @@
+<!-- src/app/components/login/login.html -->
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="bg-white shadow-lg rounded-xl p-8 w-full max-w-md">
+
+    <!-- Title -->
+    <h2 class="text-2xl font-bold text-gray-800 text-center">
+      {{ isLogin ? 'Welcome Back!' : 'Create an Account' }}
+    </h2>
+    <span class="block text-center text-gray-500 mb-6">
+      {{ isLogin ? 'Login' : 'Register' }}
+    </span>
+
+    <!-- LOGIN FORM -->
+    <form *ngIf="isLogin" (ngSubmit)="submitLogin()" class="flex flex-col space-y-5">
+
+      <div class="flex flex-col">
+        <label class="text-gray-600 font-medium mb-1">Username</label>
+        <input 
+          type="text"
+          [(ngModel)]="username"
+          name="username"
+          placeholder="Joe Doe"
+          class="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500"
+          required>
+      </div>
+
+      <div class="flex flex-col">
+        <label class="text-gray-600 font-medium mb-1">Password</label>
+        <input 
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          placeholder="Min 8 characters"
+          class="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500"
+          required>
+      </div>
+
+      <button type="submit"
+        class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition">
+        Login
+      </button>
+
+      <!-- SWITCH TO REGISTER -->
+      <p class="text-center text-sm mt-3">
+        Don't have an account? 
+        <button type="button" (click)="toggleForm()" class="text-blue-600 underline">
+          Register
+        </button>
+      </p>
+    </form>
+
+    <!-- REGISTER FORM -->
+    <form *ngIf="!isLogin" (ngSubmit)="submitRegister()" class="flex flex-col space-y-5">
+
+      <div class="flex flex-col">
+        <label class="text-gray-600 font-medium mb-1">Username</label>
+        <input 
+          type="text"
+          [(ngModel)]="regUsername"
+          name="regUsername"
+          placeholder="Joe Doe"
+          class="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500"
+          required>
+      </div>
+
+      <div class="flex flex-col">
+        <label class="text-gray-600 font-medium mb-1">Password</label>
+        <input 
+          type="password"
+          [(ngModel)]="regPassword"
+          name="regPassword"
+          placeholder="Min 8 characters"
+          class="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500"
+          required>
+      </div>
+
+      <button type="submit"
+        class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg transition">
+        Register
+      </button>
+
+      <!-- SWITCH TO LOGIN -->
+      <p class="text-center text-sm mt-3">
+        Have an account? 
+        <button type="button" (click)="toggleForm()" class="text-blue-600 underline">
+          Login
+        </button>
+      </p>
+    </form>
+
+  </div>
+</div>

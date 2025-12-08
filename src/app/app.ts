@@ -1,5 +1,7 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLinkWithHref, RouterLink, RouterLinkActive, Router } from '@angular/router';
+import { TodosComponent } from './components/todos/todos';
+import { LoginComponent } from './components/login/login';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +10,10 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('to_do_app');
+  constructor(private router: Router) {}
+logout() {
+  localStorage.removeItem("token");
+  this.router.navigate(['/login'])
+}
+  protected readonly title = signal('Todos');
 }
