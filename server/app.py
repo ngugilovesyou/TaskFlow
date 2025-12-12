@@ -11,13 +11,19 @@ from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import exceptions
+from dotenv import load_dotenv
+import os
 
+
+
+load_dotenv()
 app=Flask(__name__)
 jwt=JWTManager(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todo.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI', 'sqlite:///app.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config["JWT_SECRET_KEY"] = "super-secret"
+app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET_KEY', 'super-secret')
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'default_secret_key')
 
 # Initialize extensions
 db = SQLAlchemy(app)         
@@ -255,3 +261,4 @@ def delete_todo(todo_id):
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
+    port=int(os.getenv('PORT', 5000))
