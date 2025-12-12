@@ -50,12 +50,7 @@ def expired_token_callback(jwt_header, jwt_payload):
     return jsonify({"msg": "Token expired"}), 401
 
 
-def init_database():
-    with app.app_context():
-        db.create_all()
-        print("✅ Database tables created/verified")
-
-init_database()        
+       
 # models
 class User(db.Model):
     __tablename__ = "users"
@@ -78,6 +73,14 @@ class Todo(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
     
     user = db.relationship('User', back_populates='todos')
+
+
+def init_database():
+    with app.app_context():
+        db.create_all()
+        print("✅ Database tables created/verified")
+
+init_database() 
 
 @app.route('/')
 def home():
