@@ -28,7 +28,13 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'default_secret_key')
 # Initialize extensions
 db = SQLAlchemy(app)         
 migrate = Migrate(app, db)    
-CORS(app, supports_credentials=True)      
+CORS(app, 
+     supports_credentials=True,
+     origins=["https://task-flow-pi-navy.vercel.app"],
+     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+     allow_headers=["Content-Type", "Authorization", "X-Requested-With"],
+     expose_headers=["Content-Type", "Authorization"],
+     max_age=600)     
 bcrypt=Bcrypt()
 
 
@@ -43,6 +49,13 @@ def expired_token_callback(jwt_header, jwt_payload):
     print("Expired token")
     return jsonify({"msg": "Token expired"}), 401
 
+
+def init_database():
+    with app.app_context():
+        db.create_all()
+        print("✅ Database tables created/verified")
+
+init_database()        
 # models
 class User(db.Model):
     __tablename__ = "users"
