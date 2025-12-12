@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UserService, UserUpdatePayload } from '../../services/user';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 
 interface Todo {
@@ -22,11 +23,13 @@ interface Todo {
   styleUrl: './todos.css',
 })
 export class TodosComponent {
+  constructor(private router: Router) {}
+
   todoService = inject(TodosService);
   userService = inject(UserService);
   snack = inject(MatSnackBar);
   private cd = inject(ChangeDetectorRef);
-
+  
   dropdownOpen = false;
 profileModalOpen = false;
 deleteModalOpen = false;
@@ -72,6 +75,7 @@ closeProfileModal() {
 
 logout() {
     localStorage.removeItem('token');
+    this.router.navigate(['/auth']);
   }
   loadTodos() {
     this.todoService.getTodos().subscribe({

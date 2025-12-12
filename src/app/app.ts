@@ -13,7 +13,7 @@ export class App {
   constructor(private router: Router) {}
 logout() {
   localStorage.removeItem("token");
-  this.router.navigate(['/login'])
+  this.router.navigate(['/auth'])
 }
   protected readonly title = signal('Todos');
 }
