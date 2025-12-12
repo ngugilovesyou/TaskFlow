@@ -11,16 +11,16 @@ export class LoginService {
 
   http=inject(HttpClient)
   handleLogin(payload: login) {
-   return this.http.post("http://127.0.0.1:5000/login", payload)
+   return this.http.post("https://taskflow-azrb.onrender.com/login", payload)
   }
   handleRegister(payload: login) {
-   return this.http.post("http://127.0.0.1:5000/users", payload)
+   return this.http.post("https://taskflow-azrb.onrender.com/users", payload)
   }
 
   updateUser(userId: string | number, payload: Partial<login>) {
   const token = localStorage.getItem('token');
   const headers = { Authorization: `Bearer ${token}` };
-  return this.http.put(`http://127.0.0.1:5000/users/${userId}`, payload, { headers });
+  return this.http.put(`https://taskflow-azrb.onrender.com/users/${userId}`, payload, { headers });
 }
 
 }

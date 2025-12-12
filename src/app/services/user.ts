@@ -22,6 +22,6 @@ export class UserService {
   updateUser(payload: UserUpdatePayload): Observable<any> {
     const userId = localStorage.getItem('user_id');
     if (!userId) throw new Error('User not found');
-    return this.http.put(`http://127.0.0.1:5000/users/${userId}`, payload, this.getHeaders());
+    return this.http.put(`https://taskflow-azrb.onrender.com/users/${userId}`, payload, this.getHeaders());
   }
 }

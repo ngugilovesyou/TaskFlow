@@ -102,7 +102,7 @@ project/
    ```bash
    python app.py
    ```
-   Server runs on `http://127.0.0.1:5000`
+   Server runs on `https://taskflow-azrb.onrender.com`
 
 ### Frontend Setup
 
@@ -218,7 +218,7 @@ app.config['JWT_SECRET_KEY'] = 'super-secret'  # Change in production!
 ### Frontend Configuration
 Update API base URL in services if needed:
 ```typescript
-// Default: http://127.0.0.1:5000
+// Default: https://taskflow-azrb.onrender.com
 ```
 
 ## 🧪 Testing

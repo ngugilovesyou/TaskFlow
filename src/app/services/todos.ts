@@ -15,7 +15,7 @@ export class TodosService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.post("http://127.0.0.1:5000/todos", payload, { headers });
+    return this.http.post("https://taskflow-azrb.onrender.com/todos", payload, { headers });
   }
 
   // Get all todos
@@ -26,7 +26,7 @@ export class TodosService {
   }
 
   const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
-  return this.http.get<Todos[]>("http://127.0.0.1:5000/todos", { headers });
+  return this.http.get<Todos[]>("https://taskflow-azrb.onrender.com/todos", { headers });
 }
 
 
@@ -36,7 +36,7 @@ export class TodosService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.patch(`http://127.0.0.1:5000/todos/${id}`, payload, { headers });
+    return this.http.patch(`https://taskflow-azrb.onrender.com/todos/${id}`, payload, { headers });
   }
 
   // Delete todo
@@ -45,7 +45,7 @@ export class TodosService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.delete(`http://127.0.0.1:5000/todos/${id}`, { headers });
+    return this.http.delete(`https://taskflow-azrb.onrender.com/todos/${id}`, { headers });
   }
 }
 
